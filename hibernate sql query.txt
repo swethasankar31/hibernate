@@ -1,0 +1,87 @@
+-- hibernate
+use june_2024;
+DROP  TABLE IF EXISTS student;
+
+-- STUDENT TABLE
+CREATE TABLE student(
+id int(11) NOT NULL AUTO_INCREMENT,
+first_name varchar(45) DEFAULT null,
+last_name varchar(45) DEFAULT null,
+email varchar(45) default null,
+PRIMARY KEY(id)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+DESC STUDENT;
+ select*from student;
+
+
+ -- STUDENT DETAILS TABLE
+
+create database hibernate_june_qn;
+use hibernate_june_qn;
+create table student_detail(
+id int(11) not null auto_increment,
+branch varchar(128) default null,
+hobby varchar(45) default null,
+primary key(id)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+show tables;
+
+
+--  student table
+
+use hibernate_june_qn;
+create table student(
+id int(11) not null auto_increment,
+first_name varchar(45) default null,
+last_name varchar(45) default null,
+email varchar(45) default null,
+student_detail_id int(11) default null,
+primary key(id),
+key FK_DETAIL_idx (student_detail_id),
+constraint FK_DETAIL FOREIGN KEY(student_detail_id) REFERENCES student_detail (id) on delete no action on update no action
+) ENGINE = InnoDB AUTO_INCREMENT =1 DEFAULT CHARSET=latin1;
+SELECT*FROM STUDENT;
+SELECT*FROM student_detail;
+ select title from student where id=2;
+
+
+-- COURSE TABLE
+
+use hibernate_june_qn;
+CREATE TABLE course (id int(11) NOT NULL AUTO_INCREMENT, title varchar(128) DEFAULT NULL, student_id int(11) DEFAULT NULL,
+PRIMARY KEY (id),
+UNIQUE KEY TITLE_UNIQUE (title),
+KEY FK_STUDENT_idx (student_id),
+CONSTRAINT FK_STUDENT
+FOREIGN KEY (student_id)
+REFERENCES student (id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+)ENGINE =InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+ select* from course;
+
+
+-- INSTRUCTOR TABLE
+
+use hibernate_june_qn;
+CREATE TABLE instructor ( id int(11) NOT NULL AUTO_INCREMENT, first_name varchar(45) DEFAULT NULL, last_name varchar(45) DEFAULT NULL, email varchar(45) DEFAULT NULL, PRIMARY KEY (id) ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+desc instructor;
+CREATE TABLE course_instructor ( course_id int(11) NOT NULL, instructor_id int(11) NOT NULL,
+PRIMARY KEY (course_id, instructor_id),
+KEY FK_INSTRUCTOR_idx (instructor_id),
+CONSTRAINT FK_COURSE_05 FOREIGN KEY (course_id) REFERENCES course (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FK_INSTRUCTOR FOREIGN KEY (instructor_id) REFERENCES instructor (id) ON DELETE NO ACTION ON UPDATE NO ACTION ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+SET FOREIGN_KEY_CHECKS = 1;
+select *from instructor;
+
+
+
+
+CREATE TABLE course (id int(11) NOT NULL AUTO_INCREMENT, title varchar(128) DEFAULT NULL, student_id int(11) DEFAULT NULL,
+PRIMARY KEY (id),
+UNIQUE KEY TITLE_UNIQUE (title),
+KEY FK_STUDENT_idx (student_id),
+CONSTRAINT FK_STUDENT
+FOREIGN KEY (student_id)
+REFERENCES student (id)
+ON DELETE NO ACTION ON UPDATE NO ACTION
+)ENGINE =InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+show tables;
